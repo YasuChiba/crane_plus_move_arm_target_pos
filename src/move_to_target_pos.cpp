@@ -42,17 +42,7 @@ private:
 	}
 
 	void positionCallback(const geometry_msgs::Pose& msg) {
-		ROS_INFO("pos");
 
-		//arm.setNamedTarget("vertical");
-
-		/*	
-		arm_pose.pose.position.x += 0.01;
-                arm_pose.pose.position.y += 0.01;
-                arm_pose.pose.position.z += 0.01;
-
-		arm_pose.header.frame_id = "base_link";
-		*/
 		
 		arm_pose.header.frame_id = "base_link";
 		arm_pose.pose.position.x = msg.position.x;
@@ -69,7 +59,7 @@ private:
 
 		arm.setPoseReferenceFrame("base_link");
 		arm.setPoseTarget(arm_pose);
-		arm.setGoalTolerance(0.02);
+		arm.setGoalTolerance(0.01);
 
 		//arm.asyncMove();
 		
@@ -77,7 +67,6 @@ private:
     			ROS_WARN("Could not move to prepare pose");
   		}
 		
-		ROS_INFO("SUCCESS?");
 	}
 
 };
